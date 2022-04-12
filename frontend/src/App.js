@@ -5,6 +5,10 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/header/Header";
+import Overview from "./pages/Overview";
+import Stocks from "./pages/Stocks";
 
 export default function App() {
   const theme = createTheme({
@@ -16,9 +20,13 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Typography variant="h1">
-        Ich bin eine H1 Überschrift. Bitte immer die Doku der Komponenten lesen.
-      </Typography>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Overview />} />
+          <Route path="stocks" element={<Stocks />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
