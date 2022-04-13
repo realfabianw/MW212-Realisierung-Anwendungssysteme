@@ -14,13 +14,15 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 
 const pages = [
-  { title: "Overview", link: "" },
+  { title: "Overview", route: "" },
+  { title: "SignUp", route: "signup" },
+  { title: "SignIn", route: "signin" },
+  { title: "Stocks", route: "stocks" },
   { title: "MyPortfolio", link: "portfolio" },
-  { title: "SignUp", link: "signup" },
-  { title: "SignIn", link: "signin" },
-  { title: "Stocks", link: "stocks" },
+  { title: "Profile", route: "profile" },
+  { title: "Account", route: "account" },
+  { title: "Logout", route: "" },
 ];
-const settings = ["Profile", "Account", "Logout"];
 
 const linkStyle = {
   color: "inherit",
@@ -90,9 +92,9 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <Link to={"/" + page.link} style={linkStyle}>
+                <Link to={"/" + page.route} style={linkStyle}>
                   <MenuItem
-                    to={"/" + page.link}
+                    to={"/" + page.route}
                     key={page.title}
                     onClick={handleCloseNavMenu}
                   >
@@ -112,7 +114,7 @@ const Navbar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Link to={"/" + page.link} style={linkStyle}>
+              <Link to={"/" + page.route} style={linkStyle}>
                 <Button
                   key={page.title}
                   onClick={handleCloseNavMenu}
@@ -147,9 +149,9 @@ const Navbar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <Link to="/" style={linkStyle}>
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+                <Link to={"/" + setting.route} style={linkStyle}>
+                  <MenuItem key={setting.title} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting.title}</Typography>
                   </MenuItem>
                 </Link>
               ))}

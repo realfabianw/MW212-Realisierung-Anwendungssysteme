@@ -13,6 +13,8 @@ import Overview from "./pages/Overview";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Stocks from "./pages/Stocks";
+import Account from "./pages/Account";
+import Profile from "./pages/Profile";
 import Portfolio from "./pages/Portfolio";
 
 export default function App() {
@@ -33,6 +35,8 @@ export default function App() {
             <Route path="stocks" element={<Stocks />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="signin" element={<SignIn />} />
+            <Route path="account" element={<Account />} />
+            <Route path="profile" element={<Profile />} />
             <Route path="portfolio" element={<Portfolio />} />
           </Routes>
         </Box>
