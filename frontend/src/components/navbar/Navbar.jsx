@@ -17,6 +17,7 @@ const pages = [
   { title: "Overview", link: "" },
   { title: "SignUp", link: "signup" },
   { title: "SignIn", link: "signin" },
+  { title: "Stocks", link: "stocks" },
 ];
 const settings = ["Profile", "Account", "Logout"];
 

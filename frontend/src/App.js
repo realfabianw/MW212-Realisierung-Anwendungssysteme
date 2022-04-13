@@ -28,7 +28,7 @@ export default function App() {
         <Navbar />
         <Box sx={{ height: "90vh" }}>
           <Routes>
-            <Route path="/" element={<Overview />} />
+            <Route exact path="/" element={<Overview />} />
             <Route path="stocks" element={<Stocks />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="signin" element={<SignIn />} />
