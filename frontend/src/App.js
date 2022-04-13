@@ -1,4 +1,5 @@
 import {
+  Box,
   createTheme,
   CssBaseline,
   ThemeProvider,
@@ -6,6 +7,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import Overview from "./pages/Overview";
 import SignIn from "./pages/SignIn";
@@ -24,12 +26,15 @@ export default function App() {
       <CssBaseline />
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path="/" element={<Overview />} />
-          <Route path="stocks" element={<Stocks />} />
-          <Route path="signup" element={<SignUp />} />
-          <Route path="signin" element={<SignIn />} />
-        </Routes>
+        <Box sx={{ height: "90vh" }}>
+          <Routes>
+            <Route path="/" element={<Overview />} />
+            <Route path="stocks" element={<Stocks />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path="signin" element={<SignIn />} />
+          </Routes>
+        </Box>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );
