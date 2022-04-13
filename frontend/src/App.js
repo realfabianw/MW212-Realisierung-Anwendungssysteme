@@ -9,7 +9,6 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
-import Header from "./components/header/Header";
 import Overview from "./pages/Overview";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -27,7 +26,6 @@ export default function App() {
       <CssBaseline />
       <BrowserRouter>
         <Navbar />
-        <Header />
         <Box sx={{ height: "90vh" }}>
           <Routes>
             <Route path="/" element={<Overview />} />
