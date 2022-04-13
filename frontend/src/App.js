@@ -13,6 +13,7 @@ import Overview from "./pages/Overview";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Stocks from "./pages/Stocks";
+import Portfolio from "./pages/Portfolio";
 
 export default function App() {
   const theme = createTheme({
@@ -32,6 +33,7 @@ export default function App() {
             <Route path="stocks" element={<Stocks />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="signin" element={<SignIn />} />
+            <Route path="portfolio" element={<Portfolio />} />
           </Routes>
         </Box>
         <Footer />
