@@ -1,5 +1,10 @@
 import React from "react";
+import Grid from "@mui/material/Grid";
 
 export default function Stocks() {
-  return <div>Stocks</div>;
+  return (
+    <Grid container sx={{ justifyContent: "center", alignItems: "center" }}>
+      <div>Stocks</div>
+    </Grid>
+    );
 }

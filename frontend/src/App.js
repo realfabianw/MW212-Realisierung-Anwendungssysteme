@@ -7,8 +7,8 @@ import {
 } from "@mui/material";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
-import Header from "./components/header/Header";
 import Overview from "./pages/Overview";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -25,10 +25,10 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
-        <Header />
+        <Navbar />
         <Box sx={{ height: "90vh" }}>
           <Routes>
-            <Route path="/" element={<Overview />} />
+            <Route exact path="/" element={<Overview />} />
             <Route path="stocks" element={<Stocks />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="signin" element={<SignIn />} />
