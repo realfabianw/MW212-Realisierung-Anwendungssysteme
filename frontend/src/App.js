@@ -8,6 +8,8 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/header/Header";
 import Overview from "./pages/Overview";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 import Stocks from "./pages/Stocks";
 
 export default function App() {
@@ -25,6 +27,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Overview />} />
           <Route path="stocks" element={<Stocks />} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="signin" element={<SignIn />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
