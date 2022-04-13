@@ -18,8 +18,7 @@ const pages = [
   { title: "SignUp", route: "signup" },
   { title: "SignIn", route: "signin" },
   { title: "Stocks", route: "stocks" },
-];
-const settings = [
+  { title: "MyPortfolio", link: "portfolio" },
   { title: "Profile", route: "profile" },
   { title: "Account", route: "account" },
   { title: "Logout", route: "" },
