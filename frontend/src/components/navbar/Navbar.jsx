@@ -24,6 +24,12 @@ const pages = [
   { title: "Logout", route: "" },
 ];
 
+const settings = [
+  { title: "Profile", route: "profile" },
+  { title: "Account", route: "account" },
+  { title: "Logout", route: "" },
+];
+
 const linkStyle = {
   color: "inherit",
   textDecoration: "none",
