@@ -18,7 +18,7 @@ const pages = [
   { title: "SignUp", route: "signup" },
   { title: "SignIn", route: "signin" },
   { title: "Stocks", route: "stocks" },
-  { title: "MyPortfolio", link: "portfolio" },
+  { title: "MyPortfolio", route: "portfolio" },
 ];
 
 const settings = [
