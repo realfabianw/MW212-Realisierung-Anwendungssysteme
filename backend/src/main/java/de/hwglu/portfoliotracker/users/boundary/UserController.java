@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User getUser(String id){
+    public User getUser(int id){
 
         // CRUD GET (BY ID)
         // Geh in die Datenbank und gebe mit den Nutzer mit der übergeben Id zurück
