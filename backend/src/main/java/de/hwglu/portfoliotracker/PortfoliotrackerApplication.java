@@ -1,14 +1,16 @@
 package de.hwglu.portfoliotracker;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PortfoliotrackerApplication {
+public class PortfoliotrackerApplication{
+	private static final Logger log = LoggerFactory.getLogger(PortfoliotrackerApplication.class);
 
 	public static void main(String[] args) {
-		// Sieht aus wie ein gutes Tutorial: https://spring.io/guides/tutorials/rest/
-		SpringApplication.run(PortfoliotrackerApplication.class, args);
+		SpringApplication.run(PortfoliotrackerApplication.class, args);		
 	}
 
 }

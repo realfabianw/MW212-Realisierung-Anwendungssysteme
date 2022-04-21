@@ -11,10 +11,8 @@ public class User {
     public String email;
     public String password;
 
-    
     public User() {
     }
-
 
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
