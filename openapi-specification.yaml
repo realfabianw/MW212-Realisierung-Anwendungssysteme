@@ -202,6 +202,7 @@ paths:
           description: Invalid username supplied
         "404":
           description: User not found
+  /transactions/{transactionId}:
     put:
       tags:
         - transaction
