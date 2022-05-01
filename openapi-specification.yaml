@@ -179,7 +179,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Transaction"
-  /user/{userId}/transactions/{transactionId}:
+  /transactions/{transactionId}:
     get:
       tags:
         - transaction
@@ -202,7 +202,6 @@ paths:
           description: Invalid username supplied
         "404":
           description: User not found
-  /transactions/{transactionId}:
     put:
       tags:
         - transaction

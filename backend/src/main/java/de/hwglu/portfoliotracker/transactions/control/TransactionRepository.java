@@ -1,7 +1,6 @@
 package de.hwglu.portfoliotracker.transactions.control;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import de.hwglu.portfoliotracker.transactions.entity.Transaction;
@@ -11,5 +10,4 @@ import de.hwglu.portfoliotracker.transactions.entity.Transaction;
  */
 public interface TransactionRepository extends MongoRepository<Transaction, String> {
     List<Transaction> findByUserId(String userId);
-    Optional<Transaction> findByUserIdAndId(String userId, String id);
 }

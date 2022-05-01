@@ -45,9 +45,9 @@ public class TransactionController {
      * @param id the users id
      * @return User
      */
-    @GetMapping("/users/{userId}/transactions/{transactionId}")
-    public Optional<Transaction> get(@PathVariable String userId, @PathVariable String transactionId){
-        return repository.findByUserIdAndId(userId, transactionId);
+    @GetMapping("/transactions/{transactionId}")
+    public Optional<Transaction> get(@PathVariable String transactionId){
+        return repository.findById(transactionId);
     }
 
     /**
@@ -57,8 +57,8 @@ public class TransactionController {
      * @return Transaction
      */
     @PutMapping("/transactions/{transactionId}")
-    public Transaction updateOne(@PathVariable String id, @RequestBody Transaction transaction){
-        Optional<Transaction> databaseTransaction = repository.findById(id);
+    public Transaction updateOne(@PathVariable String transactionId, @RequestBody Transaction transaction){
+        Optional<Transaction> databaseTransaction = repository.findById(transactionId);
         transaction.id = databaseTransaction.get().id;
         return repository.save(transaction);
     }
@@ -69,8 +69,8 @@ public class TransactionController {
      * @param id
      */
     @DeleteMapping("transactions/{transactionId}")
-    public void deleteUser(@PathVariable String userId, @PathVariable String id){
-        repository.deleteById(id);
+    public void deleteUser(@PathVariable String transactionId){
+        repository.deleteById(transactionId);
         throw new NotYetConnectedException();
     }
 }
