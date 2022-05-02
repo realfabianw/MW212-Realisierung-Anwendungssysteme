@@ -197,20 +197,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/Transaction"
         "400":
-          description: Invalid username supplied
+          description: Invalid transactionId supplied
         "404":
-          description: User not found
+          description: Transaction not found
     put:
       tags:
         - transaction
-      summary: Update user
-      description: This can only be done by the logged in user.
+      summary: Update Transaction
+      description: This should only be possible for admins. This will update a transaction.
       parameters:
-        - name: userId
+        - name: transactionId
           in: path
-          description: "The users id"
+          description: "The transactionId "
           required: true
           schema:
             type: string
@@ -218,44 +218,44 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/User"
-        description: Updated user object
+              $ref: "#/components/schemas/Transaction"
+        description: Updated Transaction object
         required: true
       responses:
         "400":
-          description: Invalid user supplied
+          description: Invalid TransactionID
         "404":
-          description: User not found
+          description: Transaction not found
     delete:
       tags:
         - transaction
-      summary: Delete user
-      description: This can only be done by the logged in user.
+      summary: Delete Transaction
+      description: This should only be possible for admins. This will delete transactions.
       parameters:
-        - name: userId
+        - name: transactionId
           in: path
-          description: "The users id"
+          description: "The Transaction ID"
           required: true
           schema:
             type: string
       responses:
         "400":
-          description: Invalid username supplied
+          description: Invalid transactionId
         "404":
-          description: User not found
+          description: Transaction not found
 
   /stocks:
     post:
       tags:
         - stocks
-      summary: Create transaction
-      description: This can only be done by the logged in user.
+      summary: Create Stock
+      description: This should only be possible for admins.
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Transaction"
-        description: Created transcation object
+              $ref: "#/components/schemas/Stock"
+        description: Created Stock object. 
         required: true
       responses:
         default:
@@ -263,24 +263,24 @@ paths:
     get:
       tags:
         - stocks
-      summary: Get all transactions
-      description: Get all transactions. This should only be possible for admins.
+      summary: Get all Stocks.
+      description: Get all Stock Information. This can only be done by the logged in user
       responses:
         "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Transaction"
+                $ref: "#/components/schemas/Stock"
   /stocks/{stockId}:
     get:
       tags:
         - stocks
-      summary: Get transaction by user and id
+      summary: Get Stock Information by Stock ID.
       parameters:
         - name: userId
           in: path
-          description: "The users id"
+          description: "The Stock id .This can only be done by the logged in user "
           required: true
           schema:
             type: string
@@ -290,20 +290,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/Stock"
         "400":
-          description: Invalid username supplied
+          description: Invalid Stock ID
         "404":
-          description: User not found
+          description: Stock not found
     put:
       tags:
         - stocks
-      summary: Update user
-      description: This can only be done by the logged in user.
+      summary: Update Stock
+      description:  This should only be possible for admins. This will Update Stock Information.
       parameters:
-        - name: userId
+        - name: stockId
           in: path
-          description: "The users id"
+          description: "The stocks id which we want to update"
           required: true
           schema:
             type: string
@@ -311,44 +311,44 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/User"
-        description: Updated user object
+              $ref: "#/components/schemas/Stock"
+        description: Updated Stock object
         required: true
       responses:
         "400":
-          description: Invalid user supplied
+          description: Invalid stockId
         "404":
-          description: User not found
+          description: Stock not found
     delete:
       tags:
         - stocks
-      summary: Delete user
-      description: This can only be done by the logged in user.
+      summary: Delete Stock
+      description:  This should only be possible for admins. This will Delete the Stock.
       parameters:
-        - name: userId
+        - name: stockId
           in: path
-          description: "The users id"
+          description: "The Stock id"
           required: true
           schema:
             type: string
       responses:
         "400":
-          description: Invalid username supplied
+          description: Invalid stockId 
         "404":
-          description: User not found
+          description: Stock not found
 
   /ticks:
     post:
       tags:
         - ticks
-      summary: Create transaction
-      description: This can only be done by the logged in user.
+      summary: Create tick
+      description: This should create live Data.
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Transaction"
-        description: Created transcation object
+              $ref: "#/components/schemas/Tick"
+        description: Created Tick object
         required: true
       responses:
         default:
@@ -356,24 +356,24 @@ paths:
     get:
       tags:
         - ticks
-      summary: Get all transactions
-      description: Get all transactions. This should only be possible for admins.
+      summary: Get all Ticks
+      description: Get all Ticks and show it to the User 
       responses:
         "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Transaction"
+                $ref: "#/components/schemas/Tick"
   /ticks/{tickId}:
     get:
       tags:
         - ticks
-      summary: Get transaction by user and id
+      summary: Get Tick by tickID.
       parameters:
         - name: userId
           in: path
-          description: "The users id"
+          description: "The Tick id"
           required: true
           schema:
             type: string
@@ -383,20 +383,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/Tick"
         "400":
-          description: Invalid username supplied
+          description: Invalid tickId
         "404":
-          description: User not found
+          description: Tick not found
     put:
       tags:
         - ticks
-      summary: Update user
-      description: This can only be done by the logged in user.
+      summary: Update Tick
+      description: This can only be done by the logged in user. This will Update Tick Information
       parameters:
-        - name: userId
+        - name: tickId
           in: path
-          description: "The users id"
+          description: "The tick id"
           required: true
           schema:
             type: string
@@ -404,31 +404,31 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/User"
-        description: Updated user object
+              $ref: "#/components/schemas/Tick"
+        description: Updated Tick object
         required: true
       responses:
         "400":
-          description: Invalid user supplied
+          description: Invalid tickId
         "404":
-          description: User not found
+          description: Tick not found
     delete:
       tags:
         - ticks
-      summary: Delete user
-      description: This can only be done by the logged in user.
+      summary: Delete Tick
+      description: This can only be done by the admin. 
       parameters:
-        - name: userId
+        - name: tickId
           in: path
-          description: "The users id"
+          description: "The tickId"
           required: true
           schema:
             type: string
       responses:
         "400":
-          description: Invalid username supplied
+          description: Invalid tickId supplied
         "404":
-          description: User not found
+          description: tickId not found
 externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
