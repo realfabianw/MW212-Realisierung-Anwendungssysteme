@@ -157,6 +157,13 @@ paths:
         - transaction
       summary: Create transaction
       description: This can only be done by the logged in user.
+      parameters:
+        - name: userId
+          in: path
+          description: "The users id"
+          required: true
+          schema:
+            type: string
       requestBody:
         content:
           application/json:
@@ -172,6 +179,13 @@ paths:
         - transaction
       summary: Get all transactions
       description: Get all transactions. This should only be possible for admins.
+      parameters:
+        - name: userId
+          in: path
+          description: "The users id"
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: successful operation
@@ -185,9 +199,9 @@ paths:
         - transaction
       summary: Get transaction by user and id
       parameters:
-        - name: userId
+        - name: transactionId
           in: path
-          description: "The users id"
+          description: "The transaction id"
           required: true
           schema:
             type: string
