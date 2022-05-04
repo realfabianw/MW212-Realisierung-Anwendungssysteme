@@ -15,4 +15,16 @@ public class Tick {
     public BigDecimal low;
     public BigDecimal close;
     public String currency;
+
+    public Tick(String stockId, LocalDateTime timestamp, String exchange, BigDecimal open, BigDecimal high,
+            BigDecimal low, BigDecimal close, String currency) {
+        this.stockId = stockId;
+        this.timestamp = timestamp;
+        this.exchange = exchange;
+        this.open = open;
+        this.high = high;
+        this.low = low;
+        this.close = close;
+        this.currency = currency;
+    }
 }

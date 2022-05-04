@@ -19,13 +19,13 @@ public class PortfoliotrackerApplication{
 	public static void main(String[] args) {
 		AlphaVantage.api().init(cfg);
 
-		//TimeSeriesResponse response = AlphaVantage.api().timeSeries().daily().forSymbol("IBM").fetchSync();
+		//TimeSeriesResponse response = AlphaVantage.api().timeSeries().daily().forSymbol("TSLA").fetchSync();
 
-		TimeSeriesResponse daily = AlphaVantage.api().timeSeries().intraday().interval(Interval.SIXTY_MIN).forSymbol("TSLA").fetchSync();
+		//TimeSeriesResponse daily = AlphaVantage.api().timeSeries().intraday().interval(Interval.SIXTY_MIN).forSymbol("TSLA").fetchSync();
 
-		log.info(daily.toString());
+		//log.info(response.toString());
 
-		//SpringApplication.run(PortfoliotrackerApplication.class, args);
+		SpringApplication.run(PortfoliotrackerApplication.class, args);
 	}
 
 }
