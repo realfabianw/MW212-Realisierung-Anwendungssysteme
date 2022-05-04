@@ -269,7 +269,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Stock"
-        description: Created Stock object. 
+        description: Created Stock object.
         required: true
       responses:
         default:
@@ -313,7 +313,7 @@ paths:
       tags:
         - stocks
       summary: Update Stock
-      description:  This should only be possible for admins. This will Update Stock Information.
+      description: This should only be possible for admins. This will Update Stock Information.
       parameters:
         - name: stockId
           in: path
@@ -337,7 +337,7 @@ paths:
       tags:
         - stocks
       summary: Delete Stock
-      description:  This should only be possible for admins. This will Delete the Stock.
+      description: This should only be possible for admins. This will Delete the Stock.
       parameters:
         - name: stockId
           in: path
@@ -347,7 +347,7 @@ paths:
             type: string
       responses:
         "400":
-          description: Invalid stockId 
+          description: Invalid stockId
         "404":
           description: Stock not found
 
@@ -371,7 +371,7 @@ paths:
       tags:
         - ticks
       summary: Get all Ticks
-      description: Get all Ticks and show it to the User 
+      description: Get all Ticks and show it to the User
       responses:
         "200":
           description: successful operation
@@ -430,7 +430,7 @@ paths:
       tags:
         - ticks
       summary: Delete Tick
-      description: This can only be done by the admin. 
+      description: This can only be done by the admin.
       parameters:
         - name: tickId
           in: path
@@ -534,6 +534,13 @@ components:
           format: ISO-8601 (UTC)
         exchange:
           type: string
-        price:
-          type: object
-          $ref: "#/components/schemas/Price"
+        open:
+          type: number
+        high:
+          type: number
+        low:
+          type: number
+        close:
+          type: number
+        currency:
+          type: number
