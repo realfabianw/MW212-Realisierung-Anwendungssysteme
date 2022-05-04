@@ -1,10 +1,13 @@
-import React from "react";
+import { React, useState } from "react";
 import Grid from "@mui/material/Grid";
+import Headline from "../components/headline/Headline";
 
 export default function Stocks() {
+  const [headline] = useState('Suche');
+
   return (
     <Grid container sx={{ justifyContent: "center", alignItems: "center" }}>
-      <div>Stocks</div>
+      <Headline headline={headline}/>
     </Grid>
     );
 }
