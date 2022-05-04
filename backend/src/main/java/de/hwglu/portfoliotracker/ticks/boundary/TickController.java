@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import de.hwglu.portfoliotracker.ticks.control.TickRepository;
 import de.hwglu.portfoliotracker.ticks.entity.Tick;
 
-
 @RestController
 public class TickController {
     
@@ -50,30 +49,26 @@ public class TickController {
     public Optional<Tick> getTicks(@PathVariable String tickId){
         return repository.findById(tickId);
     }
+
     /**
      * Update the tick with the given id. (CRUD - READ)
      * @param tickId the ticks id
      * @return Tick
      */
-
     @PutMapping("/ticks/{tickId}")
     public Tick updateStock(@PathVariable String tickId, @RequestBody Tick tick){
         Tick databaseTick = getTicks(tickId).get();
         tick.id = databaseTick.id;
         return repository.save(tick);
     }
+
     /**
      * Delete the tick with the given id. (CRUD - READ)
      * @param tickId the ticks id
      * @return Tick
      */
-    
-
     @DeleteMapping("/ticks/{tickId}")
     public void deleteTick(@PathVariable String tickId){
         repository.deleteById(tickId);
     }
-
-
-
 }
