@@ -2,6 +2,7 @@ package de.hwglu.portfoliotracker;
 
 import com.crazzyghost.alphavantage.AlphaVantage;
 import com.crazzyghost.alphavantage.Config;
+import com.crazzyghost.alphavantage.parameters.Interval;
 import com.crazzyghost.alphavantage.timeseries.TimeSeries;
 import com.crazzyghost.alphavantage.timeseries.response.TimeSeriesResponse;
 
@@ -18,9 +19,11 @@ public class PortfoliotrackerApplication{
 	public static void main(String[] args) {
 		AlphaVantage.api().init(cfg);
 
-		TimeSeriesResponse response = AlphaVantage.api().timeSeries().daily().forSymbol("IBM").fetchSync();
+		//TimeSeriesResponse response = AlphaVantage.api().timeSeries().daily().forSymbol("IBM").fetchSync();
 
-		log.info(response.toString());
+		TimeSeriesResponse daily = AlphaVantage.api().timeSeries().intraday().interval(Interval.SIXTY_MIN).forSymbol("TSLA").fetchSync();
+
+		log.info(daily.toString());
 
 		//SpringApplication.run(PortfoliotrackerApplication.class, args);
 	}
