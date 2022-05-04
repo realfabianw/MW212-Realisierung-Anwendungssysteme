@@ -1,10 +1,10 @@
-import React from "react";
-import Grid from "@mui/material/Grid";
+import { React, useState } from "react";
+import Headline from "../components/headline/Headline";
 
 export default function Overview() {
+  const [headline] = useState('Tracke deine Aktien und behalte den Überblick deines Portfolios!');
+
   return (
-    <Grid container sx={{ justifyContent: "center", alignItems: "center" }}>
-      <div>Overview</div>
-    </Grid>
+    <Headline headline={headline}/>
   );
 }
