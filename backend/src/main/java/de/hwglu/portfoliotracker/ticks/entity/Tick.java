@@ -4,12 +4,16 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@Document
+@CompoundIndex(name = "unique_tick_index", def = "{'stockId':1, 'interval':1, 'timestamp':1, 'exchange':1}", unique = true)
 public class Tick {
     @Id
     private String id;

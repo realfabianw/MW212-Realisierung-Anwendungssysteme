@@ -62,7 +62,7 @@ public class AlphaVantageService {
                 LocalDate timestampDate = LocalDate.parse(stockUnit.getDate(), DATEFORMATTER);
                 LocalDateTime timestamp = timestampDate.atTime(LocalTime.MAX);
 
-                ticks.add(new Tick(stockId, Interval.DAILY, timestamp, "null",
+                ticks.add(new Tick(stockId, Interval.DAILY, timestamp, "Unknown",
                         BigDecimal.valueOf(stockUnit.getOpen()),
                         BigDecimal.valueOf(stockUnit.getHigh()),
                         BigDecimal.valueOf(stockUnit.getLow()),
