@@ -15,8 +15,8 @@ import java.util.Date;
 @Slf4j
 public class JwtTokenProvider {
 
-    //@Value("${app.jwtSecret}")
-    private String jwtSecret = "12345";
+    @Value("${jwt.secret}")
+    private String jwtSecret;
 
     public String generateToken(String userEmail) {
         Instant now = Instant.now();

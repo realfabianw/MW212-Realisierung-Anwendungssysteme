@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootApplication
-public class PortfoliotrackerApplication{
+public class PortfoliotrackerApplication {
 
 	// @Autowired
 	// private PasswordEncoder passwordEncoder;
@@ -26,25 +26,22 @@ public class PortfoliotrackerApplication{
 	// @Autowired
 	// private JwtTokenProvider jwtTokenProvider;
 
-
 	public static void main(String[] args) {
-		SpringApplication.run(PortfoliotrackerApplication.class, args);		
+		SpringApplication.run(PortfoliotrackerApplication.class, args);
 	}
-
 
 	// @Override
 	// public void run(String... args) throws Exception {
-	// 	try {
-	// 		User user = new User();
-	// 		user.setEmail("test@test.de");
-	// 		user.setPassword(passwordEncoder.encode("1234"));
+	// try {
+	// User user = new User();
+	// user.setEmail("test@test.de");
+	// user.setPassword(passwordEncoder.encode("1234"));
+	// User saved = userRepository.save(user);
 
-	// 		User saved = userRepository.save(user);
-
-	// 		System.out.println(jwtTokenProvider.generateToken(saved.getEmail()));
-	// 	} catch (Exception e) {
-	// 		log.error("Error: ", e);
-	// 	}
+	// System.out.println(jwtTokenProvider.generateToken(saved.getEmail()));
+	// } catch (Exception e) {
+	// log.error("Error: ", e);
+	// }
 	// }
 
 }
