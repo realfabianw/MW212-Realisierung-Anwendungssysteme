@@ -2,9 +2,6 @@ package de.hwglu.portfoliotracker;
 
 import com.crazzyghost.alphavantage.AlphaVantage;
 import com.crazzyghost.alphavantage.Config;
-import com.crazzyghost.alphavantage.parameters.Interval;
-import com.crazzyghost.alphavantage.timeseries.TimeSeries;
-import com.crazzyghost.alphavantage.timeseries.response.TimeSeriesResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

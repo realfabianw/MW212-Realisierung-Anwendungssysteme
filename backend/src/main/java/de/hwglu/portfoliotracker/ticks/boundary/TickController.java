@@ -3,8 +3,6 @@ package de.hwglu.portfoliotracker.ticks.boundary;
 import java.util.List;
 import java.util.Optional;
 
-import com.crazzyghost.alphavantage.AlphaVantage;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import de.hwglu.portfoliotracker.alphavantage.AlphaVantageService;
 import de.hwglu.portfoliotracker.ticks.control.TickRepository;
