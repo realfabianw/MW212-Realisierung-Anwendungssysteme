@@ -19,6 +19,6 @@ public class AlphaVantageConfig {
     @Bean
     public void initialise() {
         AlphaVantage.api().init(Config.builder().key(key).timeOut(10).build());
-        log.info("AlphaVantage connection initialised with key: " + key);
+        log.info("AlphaVantage connection initialised");
     }
 }
