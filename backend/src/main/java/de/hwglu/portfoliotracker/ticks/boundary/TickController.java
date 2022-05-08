@@ -23,7 +23,6 @@ import de.hwglu.portfoliotracker.ticks.entity.Tick;
 
 @RestController
 public class TickController {
-    private static final Logger log = LoggerFactory.getLogger(TickController.class);
 
     @Autowired
     private TickRepository repository;
@@ -50,7 +49,7 @@ public class TickController {
     @GetMapping("/ticks")
     public List<Tick> getAll(@RequestParam(required = false) String stockId) {
         if (stockId != null) {
-            alphaVantageService.fetchTicksIfNotExists(stockId);
+            alphaVantageService.fetchDailyTicksIfNotExists(stockId);
             return repository.findByStockId(stockId);
         } else {
             return repository.findAll();
@@ -77,7 +76,7 @@ public class TickController {
     @PutMapping("/ticks/{tickId}")
     public Tick updateStock(@PathVariable String tickId, @RequestBody Tick tick) {
         Tick databaseTick = getTicks(tickId).get();
-        tick.id = databaseTick.id;
+        tick.setId(databaseTick.getId());
         return repository.save(tick);
     }
 

@@ -2,11 +2,16 @@ package de.hwglu.portfoliotracker.stocks.entity;
 
 import org.springframework.data.annotation.Id;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class Stock {
     @Id
-    public String id;
-    public String symbol;
-    public String isin;
-    public String wkn;
-    public String name;
+    private String id;
+    private String symbol;
+    private String isin;
+    private String wkn;
+    private String name;
 }

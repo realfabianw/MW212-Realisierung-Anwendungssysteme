@@ -20,12 +20,12 @@ import org.springframework.stereotype.Service;
 import de.hwglu.portfoliotracker.stocks.control.StockRepository;
 import de.hwglu.portfoliotracker.stocks.entity.Stock;
 import de.hwglu.portfoliotracker.ticks.control.TickRepository;
+import de.hwglu.portfoliotracker.ticks.entity.Interval;
 import de.hwglu.portfoliotracker.ticks.entity.Tick;
 
 @Service
 public class AlphaVantageService {
     private static final Logger log = LoggerFactory.getLogger(AlphaVantageService.class);
-    
 
     @Autowired
     private TickRepository tickRepository;
@@ -33,9 +33,9 @@ public class AlphaVantageService {
     @Autowired
     private StockRepository stockRepository;
 
-    public void fetchTicksIfNotExists(String stockId){
+    public void fetchDailyTicksIfNotExists(String stockId) {
 
-        LocalDateTime fiveDaysAgo = LocalDate.now().atStartOfDay().minusDays(5);
+        LocalDateTime fiveDaysAgo = getLastOpenDay();
 
         log.info("checking the database for entries...");
 
@@ -43,31 +43,31 @@ public class AlphaVantageService {
 
         log.info("entries found: {}", tickCount);
 
-        if (tickCount == 0){
+        if (tickCount == 0) {
             Stock stock = stockRepository.findById(stockId).get();
 
             log.info("fetching tick data...");
 
-            TimeSeriesResponse response = AlphaVantage.api().timeSeries().daily().forSymbol(stock.symbol).fetchSync();
-            
+            TimeSeriesResponse response = AlphaVantage.api().timeSeries().daily().forSymbol(stock.getSymbol())
+                    .fetchSync();
+
             log.info(response.toString());
-    
+
             // Time Series Response -> Tick
-    
+
             DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    
+
             List<Tick> ticks = new ArrayList<>();
-            for (StockUnit stockUnit : response.getStockUnits()){
+            for (StockUnit stockUnit : response.getStockUnits()) {
                 LocalDate timestampDate = LocalDate.parse(stockUnit.getDate(), DATEFORMATTER);
                 LocalDateTime timestamp = timestampDate.atTime(LocalTime.MAX);
-    
-    
-                ticks.add(new Tick(stockId, timestamp, "null", 
-                BigDecimal.valueOf(stockUnit.getOpen()),
-                BigDecimal.valueOf(stockUnit.getHigh()),
-                BigDecimal.valueOf(stockUnit.getLow()),
-                BigDecimal.valueOf(stockUnit.getClose()),
-                    "$"));
+
+                ticks.add(new Tick(stockId, Interval.DAILY, timestamp, "null",
+                        BigDecimal.valueOf(stockUnit.getOpen()),
+                        BigDecimal.valueOf(stockUnit.getHigh()),
+                        BigDecimal.valueOf(stockUnit.getLow()),
+                        BigDecimal.valueOf(stockUnit.getClose()),
+                        "$"));
             }
 
             log.info("persisting tick data in the database...");
@@ -76,5 +76,15 @@ public class AlphaVantageService {
 
             log.info("successfully persisted tick data in the database");
         }
+    }
+
+    /**
+     * TODO Diese Methode sollte den letzten Tag zurückgeben, an dem die Börse offen
+     * war. Falls FR -> DO; Falls MO -> FR
+     * 
+     * @return LocalDateTime
+     */
+    private LocalDateTime getLastOpenDay() {
+        return LocalDate.now().atStartOfDay().minusDays(5);
     }
 }
