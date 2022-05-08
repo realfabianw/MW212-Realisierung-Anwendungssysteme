@@ -1,4 +1,4 @@
-package de.hwglu.portfoliotracker;
+package de.hwglu.portfoliotracker.alphavantage.boundary;
 
 import com.crazzyghost.alphavantage.AlphaVantage;
 import com.crazzyghost.alphavantage.Config;

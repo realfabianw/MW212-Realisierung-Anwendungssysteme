@@ -1,4 +1,4 @@
-package de.hwglu.portfoliotracker.alphavantage;
+package de.hwglu.portfoliotracker.alphavantage.control;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
