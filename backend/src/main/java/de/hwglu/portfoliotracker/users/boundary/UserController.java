@@ -51,7 +51,7 @@ public class UserController {
     @PutMapping("/users/{id}")
     public User updateUser(@PathVariable String id, @RequestBody User user){
         User databaseUser = getUser(id).get();
-        user.id = databaseUser.id;
+        user.setId(databaseUser.getId());
         return repository.save(user);
     }
 
