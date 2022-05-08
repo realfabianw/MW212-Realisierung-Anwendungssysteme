@@ -24,7 +24,7 @@ import de.hwglu.portfoliotracker.ticks.entity.Tick;
 @RestController
 public class TickController {
     private static final Logger log = LoggerFactory.getLogger(TickController.class);
-    
+
     @Autowired
     private TickRepository repository;
 
@@ -33,21 +33,23 @@ public class TickController {
 
     /**
      * Creates a new Tick instance and persists it in the database. (CRUD - POST)
+     * 
      * @param tick
      * @return Tick
      */
     @PostMapping("/ticks")
-    public Tick create(@RequestBody Tick tick){
+    public Tick create(@RequestBody Tick tick) {
         return repository.save(tick);
     }
 
     /**
-     * Returns all ticks from the database. (CRUD - READ) 
+     * Returns all ticks from the database. (CRUD - READ)
+     * 
      * @return List
      */
     @GetMapping("/ticks")
-    public List<Tick> getAll(@RequestParam(required = false) String stockId){
-        if (stockId != null){
+    public List<Tick> getAll(@RequestParam(required = false) String stockId) {
+        if (stockId != null) {
             alphaVantageService.fetchTicksIfNotExists(stockId);
             return repository.findByStockId(stockId);
         } else {
@@ -57,21 +59,23 @@ public class TickController {
 
     /**
      * Returns the tick with the given id. (CRUD - READ)
+     * 
      * @param tickId the ticks id
      * @return Tick
      */
     @GetMapping("/ticks/{tickId}")
-    public Optional<Tick> getTicks(@PathVariable String tickId){
+    public Optional<Tick> getTicks(@PathVariable String tickId) {
         return repository.findById(tickId);
     }
 
     /**
      * Update the tick with the given id. (CRUD - READ)
+     * 
      * @param tickId the ticks id
      * @return Tick
      */
     @PutMapping("/ticks/{tickId}")
-    public Tick updateStock(@PathVariable String tickId, @RequestBody Tick tick){
+    public Tick updateStock(@PathVariable String tickId, @RequestBody Tick tick) {
         Tick databaseTick = getTicks(tickId).get();
         tick.id = databaseTick.id;
         return repository.save(tick);
@@ -79,11 +83,12 @@ public class TickController {
 
     /**
      * Delete the tick with the given id. (CRUD - READ)
+     * 
      * @param tickId the ticks id
      * @return Tick
      */
     @DeleteMapping("/ticks/{tickId}")
-    public void deleteTick(@PathVariable String tickId){
+    public void deleteTick(@PathVariable String tickId) {
         repository.deleteById(tickId);
     }
 }
