@@ -19,6 +19,18 @@ class UserService {
     }
 
     async login(email, password) {
+        await axios.post(
+            "http://localhost:9090/login",
+            {
+                email: email,
+                password: password
+            },
+        ).then(response => {
+            console.log(response);
+            return response.data;
+        }).catch(error => {
+            console.log(error);
+        });
     }
 }
 
