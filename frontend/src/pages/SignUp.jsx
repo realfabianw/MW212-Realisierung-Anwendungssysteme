@@ -9,6 +9,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
+import UserService from "../services/UserService";
 
 export default function SignUp() {
   const handleSubmit = (event) => {
@@ -18,6 +19,12 @@ export default function SignUp() {
       email: data.get("email"),
       password: data.get("password"),
     });
+    UserService.register(
+      data.get("firstName"),
+      data.get("lastName"),
+      data.get("email"),
+      data.get("password"),
+    );
   };
 
   return (
