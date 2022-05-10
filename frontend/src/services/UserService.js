@@ -1,37 +1,43 @@
 import axios from "axios";
 
 class UserService {
-    async register(firstname, lastname, email, password) {
-        await axios.post(
-            "http://localhost:9090/register",
-            {
-                firstName: firstname,
-                lastName: lastname,
-                email: email,
-                password: password
-            },
-        ).then(response => {
-            console.log(response);
-            return response.data;
-        }).catch(error => {
-            console.log(error);
-        });
-    }
+  jwtToken = "";
 
-    async login(email, password) {
-        await axios.post(
-            "http://localhost:9090/login",
-            {
-                email: email,
-                password: password
-            },
-        ).then(response => {
-            console.log(response);
-            return response.data;
-        }).catch(error => {
-            console.log(error);
-        });
-    }
+  async register(firstname, lastname, email, password) {
+    return await axios
+      .post("http://localhost:9090/register", {
+        firstName: firstname,
+        lastName: lastname,
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response);
+        return true;
+      })
+      .catch((error) => {
+        console.log(error);
+        return false;
+      });
+  }
+
+  async login(email, password) {
+    console.log("Logging in with credentials: " + email + ", " + password);
+    return await axios
+      .post("http://localhost:9090/login", {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response);
+        this.jwtToken = response.data;
+        return true;
+      })
+      .catch((error) => {
+        console.log(error);
+        return false;
+      });
+  }
 }
 
 export default new UserService();
