@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import UserService from "../services/UserService";
 import { useNavigate } from "react-router-dom";
 
-export default function SignUp() {
+export default function RegisterPage() {
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -30,7 +30,7 @@ export default function SignUp() {
     );
 
     if (registered) {
-      navigate("/signin");
+      navigate("/login");
     }
   };
 
