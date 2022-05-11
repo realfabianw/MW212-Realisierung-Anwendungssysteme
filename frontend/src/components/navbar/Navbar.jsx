@@ -15,8 +15,8 @@ import { Link } from "react-router-dom";
 
 const pages = [
   { title: "Overview", route: "" },
-  { title: "SignUp", route: "signup" },
-  { title: "SignIn", route: "signin" },
+  { title: "SignUp", route: "register" },
+  { title: "SignIn", route: "login" },
   { title: "Stocks", route: "stocks" },
   { title: "MyPortfolio", route: "portfolio" },
 ];

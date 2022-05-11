@@ -3,6 +3,10 @@ import axios from "axios";
 class UserService {
   jwtToken = "";
 
+  getAuthorizationHeader() {
+    return {'Authorization': 'Bearer ' + this.jwtToken}
+  }
+
   async register(firstname, lastname, email, password) {
     return await axios
       .post("http://localhost:9090/register", {
