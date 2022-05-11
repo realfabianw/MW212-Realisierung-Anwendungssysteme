@@ -2,16 +2,15 @@ import UserService from "./UserService";
 import axios from "axios";
 
 class StockService {
-  jwtToken = "";
-
   async getAllStocks() {
+    let token = UserService.getAuthorizationHeader();
     console.log(
       "Loading all available Stocks from DB with Authorization Token: " +
-        this.jwtToken.Authorization
+        token.Authorization
     );
     return await axios
       .get("http://localhost:9090/stocks", {
-        headers: UserService.getAuthorizationHeader(),
+        headers: token,
       })
       .then((response) => {
         console.log(response);
@@ -24,13 +23,16 @@ class StockService {
   }
 
   async getStockById(stockId) {
+    let token = UserService.getAuthorizationHeader();
     console.log(
-      "Loading all available Stocks from DB with Authorization Token: " +
-        this.jwtToken.Authorization
+      "Loading stock " +
+        stockId +
+        " from DB with Authorization Token: " +
+        token.Authorization
     );
     return await axios
       .get("http://localhost:9090/stocks/" + stockId, {
-        headers: UserService.getAuthorizationHeader(),
+        headers: token,
       })
       .then((response) => {
         console.log(response);

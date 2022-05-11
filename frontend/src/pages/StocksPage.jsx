@@ -6,16 +6,8 @@ import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import StockElement from "../components/stocks_overview/StockElement";
 
-export default function Stocks() {
-  const [stocks, setStocks] = useState([]);
-
-  const handleClick = async () => {
-    await StockService.getAllStocks();
-  };
-
-  const handleClick2 = async () => {
-    await StockService.getStockById("62729c9b21424b64d01ce5e3");
-  };
+export default function StocksPage() {
+  const [stocks, setStocks] = useState(undefined);
 
   useEffect(() => {
     async function fetchData() {
@@ -25,6 +17,10 @@ export default function Stocks() {
     fetchData();
     console.log(stocks);
   }, []);
+
+  const handleClick = async () => {
+    await StockService.getAllStocks();
+  };
 
   return (
     <Grid
@@ -45,15 +41,12 @@ export default function Stocks() {
           </Button>
         </Grid>
 
-        {stocks.map((stock) => (
-          <Grid key={stock.id} xs={6} sx={{ p: "1rem" }}>
-            <StockElement stock={stock} />
-          </Grid>
-        ))}
-
-        {/* <Headline headline={headline} />
-      <Button onClick={handleClick} variant="outlined">Get all Stocks</Button>
-      <Button onClick={handleClick2} variant="outlined">Get TSLA Stock</Button> */}
+        {stocks &&
+          stocks.map((stock) => (
+            <Grid key={stock.id} xs={6} sx={{ p: "1rem" }}>
+              <StockElement stock={stock} />
+            </Grid>
+          ))}
       </Grid>
     </Grid>
   );
