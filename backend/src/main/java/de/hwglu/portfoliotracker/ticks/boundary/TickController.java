@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.hwglu.portfoliotracker.alphavantage.control.AlphaVantageService;
 import de.hwglu.portfoliotracker.ticks.control.TickRepository;
 import de.hwglu.portfoliotracker.ticks.entity.Tick;
 
@@ -21,6 +22,9 @@ public class TickController {
 
     @Autowired
     private TickRepository repository;
+
+    @Autowired
+    private AlphaVantageService alphaVantageService;
 
     /**
      * Creates a new Tick instance and persists it in the database. (CRUD - POST)
@@ -41,6 +45,7 @@ public class TickController {
     @GetMapping("/ticks")
     public List<Tick> getAll(@RequestParam(required = false) String stockId) {
         if (stockId != null) {
+            alphaVantageService.fetchDailyTicksIfNotExists(stockId);
             return repository.findByStockId(stockId);
         } else {
             return repository.findAll();
@@ -67,7 +72,7 @@ public class TickController {
     @PutMapping("/ticks/{tickId}")
     public Tick updateStock(@PathVariable String tickId, @RequestBody Tick tick) {
         Tick databaseTick = getTicks(tickId).get();
-        tick.id = databaseTick.id;
+        tick.setId(databaseTick.getId());
         return repository.save(tick);
     }
 

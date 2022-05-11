@@ -1,20 +1,16 @@
-import {
-  Box,
-  createTheme,
-  CssBaseline,
-  ThemeProvider
-} from "@mui/material";
+import { Box, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import Overview from "./pages/Overview";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import Stocks from "./pages/Stocks";
+import StocksPage from "./pages/StocksPage";
 import Account from "./pages/Account";
 import Profile from "./pages/Profile";
 import Portfolio from "./pages/Portfolio";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import StockDetailPage from "./pages/StockDetailPage";
 
 export default function App() {
   const theme = createTheme({
@@ -28,12 +24,13 @@ export default function App() {
       <CssBaseline />
       <BrowserRouter>
         <Navbar />
-        <Box sx={{ height: "90vh" }}>
+        <Box sx={{ pt: "2rem", height: "90vh" }}>
           <Routes>
             <Route exact path="/" element={<Overview />} />
-            <Route path="stocks" element={<Stocks />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="signin" element={<SignIn />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="stocks" element={<StocksPage />} />
+            <Route path="stocks/:stockId" element={<StockDetailPage />} />
             <Route path="account" element={<Account />} />
             <Route path="profile" element={<Profile />} />
             <Route path="portfolio" element={<Portfolio />} />

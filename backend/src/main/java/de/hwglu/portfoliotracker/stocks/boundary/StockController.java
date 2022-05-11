@@ -2,7 +2,6 @@ package de.hwglu.portfoliotracker.stocks.boundary;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,48 +21,46 @@ public class StockController {
 
     /**
      * Creates a new stock instance and persists it in the database. (CRUD - POST)
+     * 
      * @param stock
      * @return Stock
      */
     @PostMapping("/stocks")
-    public Stock create(@RequestBody Stock stock){
+    public Stock create(@RequestBody Stock stock) {
         return repository.save(stock);
     }
 
     /**
-     * Returns all stocks from the database. (CRUD - READ) 
+     * Returns all stocks from the database. (CRUD - READ)
+     * 
      * @return List
      */
     @GetMapping("/stocks")
-    public List<Stock> getStocks(){
+    public List<Stock> getStocks() {
         return repository.findAll();
     }
 
     /**
      * Returns the stock with the given id. (CRUD - READ)
+     * 
      * @param stockId the stocks id
      * @return Stock
      */
     @GetMapping("/stocks/{stockId}")
-    public Optional<Stock> getStocks(@PathVariable String stockId){
+    public Optional<Stock> getStocks(@PathVariable String stockId) {
         return repository.findById(stockId);
     }
-    
 
     @PutMapping("/stocks/{stockId}")
-    public Stock updateStock(@PathVariable String stockId, @RequestBody Stock stock){
+    public Stock updateStock(@PathVariable String stockId, @RequestBody Stock stock) {
         Stock databaseStock = getStocks(stockId).get();
-        stock.id = databaseStock.id;
+        stock.setId(databaseStock.getId());
         return repository.save(stock);
     }
 
-    
-
     @DeleteMapping("/stocks/{stockId}")
-    public void deleteStock(@PathVariable String stockId){
+    public void deleteStock(@PathVariable String stockId) {
         repository.deleteById(stockId);
     }
-
-
 
 }

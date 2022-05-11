@@ -9,15 +9,29 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
+import UserService from "../services/UserService";
+import { useNavigate } from "react-router-dom";
 
-export default function SignUp() {
-  const handleSubmit = (event) => {
+export default function RegisterPage() {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get("email"),
       password: data.get("password"),
     });
+    let registered = await UserService.register(
+      data.get("firstName"),
+      data.get("lastName"),
+      data.get("email"),
+      data.get("password")
+    );
+
+    if (registered) {
+      navigate("/login");
+    }
   };
 
   return (

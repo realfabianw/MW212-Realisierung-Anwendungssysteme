@@ -18,58 +18,63 @@ import de.hwglu.portfoliotracker.transactions.entity.Transaction;
 @RestController
 public class TransactionController {
     @Autowired
-	private TransactionRepository repository;
+    private TransactionRepository repository;
 
     /**
      * Creates a new instance and persists it in the database. (CRUD - POST)
+     * 
      * @param transaction
      * @return Transaction
      */
     @PostMapping("/users/{userId}/transactions")
-    public Transaction create(@PathVariable String userId, @RequestBody Transaction transaction){
-        transaction.userId = userId;
+    public Transaction create(@PathVariable String userId, @RequestBody Transaction transaction) {
+        transaction.setUserId(userId);
         return repository.save(transaction);
     }
 
-     /**
-     * Returns all transactions from the database. (CRUD - READ) 
+    /**
+     * Returns all transactions from the database. (CRUD - READ)
+     * 
      * @return List
      */
     @GetMapping("/users/{userId}/transactions")
-    public List<Transaction> getAll(@PathVariable String userId){
+    public List<Transaction> getAll(@PathVariable String userId) {
         return repository.findByUserId(userId);
     }
 
     /**
      * Returns the given transaction with the given id. (CRUD - READ)
+     * 
      * @param id the users id
      * @return User
      */
     @GetMapping("/transactions/{transactionId}")
-    public Optional<Transaction> get(@PathVariable String transactionId){
+    public Optional<Transaction> get(@PathVariable String transactionId) {
         return repository.findById(transactionId);
     }
 
     /**
      * Finds a perstisted transaction and replaces it with the new one.
+     * 
      * @param id
      * @param transaction
      * @return Transaction
      */
     @PutMapping("/transactions/{transactionId}")
-    public Transaction updateOne(@PathVariable String transactionId, @RequestBody Transaction transaction){
+    public Transaction updateOne(@PathVariable String transactionId, @RequestBody Transaction transaction) {
         Optional<Transaction> databaseTransaction = repository.findById(transactionId);
-        transaction.id = databaseTransaction.get().id;
+        transaction.setId(databaseTransaction.get().getId());
         return repository.save(transaction);
     }
 
     /**
      * Deletes a persisted transaction.
+     * 
      * @param userId
      * @param id
      */
     @DeleteMapping("transactions/{transactionId}")
-    public void deleteUser(@PathVariable String transactionId){
+    public void deleteUser(@PathVariable String transactionId) {
         repository.deleteById(transactionId);
         throw new NotYetConnectedException();
     }
