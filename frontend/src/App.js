@@ -23,7 +23,7 @@ export default function App() {
       <CssBaseline />
       <BrowserRouter>
         <Navbar />
-        <Box sx={{ height: "90vh" }}>
+        <Box sx={{ pt: "2rem", height: "90vh" }}>
           <Routes>
             <Route exact path="/" element={<Overview />} />
             <Route path="register" element={<RegisterPage />} />
