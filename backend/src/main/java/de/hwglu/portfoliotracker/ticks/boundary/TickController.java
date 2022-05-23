@@ -59,7 +59,7 @@ public class TickController {
      * @return Tick
      */
     @GetMapping("/ticks/{tickId}")
-    public Optional<Tick> getTicks(@PathVariable String tickId) {
+    public Optional<Tick> get(@PathVariable String tickId) {
         return repository.findById(tickId);
     }
 
@@ -70,8 +70,8 @@ public class TickController {
      * @return Tick
      */
     @PutMapping("/ticks/{tickId}")
-    public Tick updateStock(@PathVariable String tickId, @RequestBody Tick tick) {
-        Tick databaseTick = getTicks(tickId).get();
+    public Tick update(@PathVariable String tickId, @RequestBody Tick tick) {
+        Tick databaseTick = get(tickId).get();
         tick.setId(databaseTick.getId());
         return repository.save(tick);
     }
@@ -83,7 +83,7 @@ public class TickController {
      * @return Tick
      */
     @DeleteMapping("/ticks/{tickId}")
-    public void deleteTick(@PathVariable String tickId) {
+    public void delete(@PathVariable String tickId) {
         repository.deleteById(tickId);
     }
 }

@@ -39,7 +39,7 @@ public class UserController {
     private JwtTokenProvider jwtTokenProvider;
 
     @PostMapping("/register")
-    public User createUser(@RequestBody User user) {
+    public User create(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return repository.save(user);
     }
@@ -60,7 +60,7 @@ public class UserController {
      * @return List
      */
     @GetMapping("/users")
-    public List<User> getUsers() {
+    public List<User> getAll() {
         return repository.findAll();
     }
 
@@ -76,14 +76,14 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public User updateUser(@PathVariable String id, @RequestBody User user) {
+    public User update(@PathVariable String id, @RequestBody User user) {
         User databaseUser = getUser(id).get();
         user.setId(databaseUser.getId());
         return repository.save(user);
     }
 
     @DeleteMapping("/users/{id}")
-    public void deleteUser(@PathVariable String id) {
+    public void delete(@PathVariable String id) {
         repository.deleteById(id);
     }
 

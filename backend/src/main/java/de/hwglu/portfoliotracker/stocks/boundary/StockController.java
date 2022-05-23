@@ -36,7 +36,7 @@ public class StockController {
      * @return List
      */
     @GetMapping("/stocks")
-    public List<Stock> getStocks() {
+    public List<Stock> getAll() {
         return repository.findAll();
     }
 
@@ -47,19 +47,19 @@ public class StockController {
      * @return Stock
      */
     @GetMapping("/stocks/{stockId}")
-    public Optional<Stock> getStocks(@PathVariable String stockId) {
+    public Optional<Stock> get(@PathVariable String stockId) {
         return repository.findById(stockId);
     }
 
     @PutMapping("/stocks/{stockId}")
-    public Stock updateStock(@PathVariable String stockId, @RequestBody Stock stock) {
-        Stock databaseStock = getStocks(stockId).get();
+    public Stock update(@PathVariable String stockId, @RequestBody Stock stock) {
+        Stock databaseStock = get(stockId).get();
         stock.setId(databaseStock.getId());
         return repository.save(stock);
     }
 
     @DeleteMapping("/stocks/{stockId}")
-    public void deleteStock(@PathVariable String stockId) {
+    public void delete(@PathVariable String stockId) {
         repository.deleteById(stockId);
     }
 
