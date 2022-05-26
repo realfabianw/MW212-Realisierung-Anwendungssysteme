@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,9 +23,13 @@ public class Tick {
     private Interval interval;
     private LocalDateTime timestamp;
     private String exchange;
+    @Field(targetType = FieldType.DECIMAL128)
     private BigDecimal open;
+    @Field(targetType = FieldType.DECIMAL128)
     private BigDecimal high;
+    @Field(targetType = FieldType.DECIMAL128)
     private BigDecimal low;
+    @Field(targetType = FieldType.DECIMAL128)
     private BigDecimal close;
     private String currency;
 
