@@ -1,9 +1,10 @@
-import { Grid, Link, Paper, Typography } from "@mui/material";
+import { Grid, Paper, Typography } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function StockElement({ stock }) {
   return (
-    <Link href={"/stocks/" + stock.id} style={{ textDecoration: "none" }}>
+    <Link to={"/stocks/" + stock.id} style={{ textDecoration: "none" }}>
       <Paper>
         <Grid container sx={{ alignItems: "center" }}>
           <Grid item xs={8} sx={{ pl: "1rem" }}>
@@ -26,5 +27,8 @@ export default function StockElement({ stock }) {
         </Grid>
       </Paper>
     </Link>
+    //<Link href={"/stocks/" + stock.id} style={{ textDecoration: "none" }}>
+
+    //</Link>
   );
 }

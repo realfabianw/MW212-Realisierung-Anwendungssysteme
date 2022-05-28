@@ -11,6 +11,8 @@ import Portfolio from "./pages/Portfolio";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import StockDetailPage from "./pages/StockDetailPage";
+import UserService from "./services/UserService";
+import StockService from "./services/StockService";
 
 export default function App() {
   const theme = createTheme({
@@ -18,6 +20,9 @@ export default function App() {
       mode: "dark",
     },
   });
+
+  StockService.getInstance();
+  UserService.getInstance();
 
   return (
     <ThemeProvider theme={theme}>

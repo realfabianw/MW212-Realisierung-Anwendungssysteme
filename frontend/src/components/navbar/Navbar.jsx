@@ -95,7 +95,7 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <Link to={"/" + page.route} style={linkStyle}>
+                <Link key={page.title} to={"/" + page.route} style={linkStyle}>
                   <MenuItem
                     to={"/" + page.route}
                     key={page.title}
@@ -117,7 +117,7 @@ const Navbar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Link to={"/" + page.route} style={linkStyle}>
+              <Link key={page.title} to={"/" + page.route} style={linkStyle}>
                 <Button
                   key={page.title}
                   onClick={handleCloseNavMenu}
@@ -152,7 +152,11 @@ const Navbar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <Link to={"/" + setting.route} style={linkStyle}>
+                <Link
+                  key={setting.route}
+                  to={"/" + setting.route}
+                  style={linkStyle}
+                >
                   <MenuItem key={setting.title} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting.title}</Typography>
                   </MenuItem>

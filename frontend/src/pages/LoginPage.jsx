@@ -22,7 +22,7 @@ export default function LoginPage() {
       password: data.get("password"),
     });
 
-    let authenticated = await UserService.login(
+    let authenticated = await UserService.getInstance().login(
       data.get("email"),
       data.get("password")
     );

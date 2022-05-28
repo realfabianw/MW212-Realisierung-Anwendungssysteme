@@ -1,9 +1,18 @@
 import UserService from "./UserService";
 import axios from "axios";
 
-class StockService {
+export default class StockService {
+  static instance = null;
+  static getInstance() {
+    if (StockService.instance == null) {
+      StockService.instance = new StockService();
+      console.log("Created a new instance of StockService");
+    }
+    return this.instance;
+  }
+
   async getAllStocks() {
-    let token = UserService.getAuthorizationHeader();
+    let token = UserService.getInstance().getAuthorizationHeader();
     console.log(
       "Loading all available Stocks from DB with Authorization Token: " +
         token.Authorization
@@ -23,7 +32,7 @@ class StockService {
   }
 
   async getStockById(stockId) {
-    let token = UserService.getAuthorizationHeader();
+    let token = UserService.getInstance().getAuthorizationHeader();
     console.log(
       "Loading stock " +
         stockId +
@@ -44,5 +53,3 @@ class StockService {
       });
   }
 }
-
-export default new StockService();

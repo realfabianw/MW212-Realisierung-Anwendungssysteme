@@ -1,10 +1,19 @@
 import axios from "axios";
 
-class UserService {
+export default class UserService {
+  static instance = null;
+  static getInstance() {
+    if (UserService.instance == null) {
+      UserService.instance = new UserService();
+      console.log("Created a new instance of UserService");
+    }
+    return this.instance;
+  }
+
   jwtToken = "";
 
   getAuthorizationHeader() {
-    return {'Authorization': 'Bearer ' + this.jwtToken}
+    return { Authorization: "Bearer " + this.jwtToken };
   }
 
   async register(firstname, lastname, email, password) {
@@ -43,5 +52,3 @@ class UserService {
       });
   }
 }
-
-export default new UserService();

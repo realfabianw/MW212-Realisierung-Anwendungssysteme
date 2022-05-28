@@ -11,7 +11,7 @@ export default function StocksPage() {
 
   useEffect(() => {
     async function fetchData() {
-      let result = await StockService.getAllStocks();
+      let result = await StockService.getInstance().getAllStocks();
       setStocks(result);
     }
     fetchData();
@@ -19,7 +19,7 @@ export default function StocksPage() {
   }, []);
 
   const handleClick = async () => {
-    await StockService.getAllStocks();
+    await StockService.getInstance().getAllStocks();
   };
 
   return (

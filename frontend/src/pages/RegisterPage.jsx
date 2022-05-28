@@ -22,7 +22,7 @@ export default function RegisterPage() {
       email: data.get("email"),
       password: data.get("password"),
     });
-    let registered = await UserService.register(
+    let registered = await UserService.getInstance().register(
       data.get("firstName"),
       data.get("lastName"),
       data.get("email"),
