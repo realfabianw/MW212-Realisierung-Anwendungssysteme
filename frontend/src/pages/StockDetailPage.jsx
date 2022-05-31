@@ -35,14 +35,14 @@ export default function StockDetailPage() {
         alignItems: "flex-start",
       }}
     >
-      <Grid container xs={10}>
+      <Grid container xs={8}>
         {/* <Grid xs={6} sx={{ pl: "1rem" }}>
           <Typography variant="h3">Stocks</Typography>
         </Grid> */}
         <Grid item xs={12}>
-          {stock && <StockElement stock={stock} />}
+          {stock && <StockElement stock={stock} isClickable={false} />}
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} sx={{ pt: "2rem" }}>
           {tickData && <StockAreaChart data={tickData} />}
         </Grid>
       </Grid>
