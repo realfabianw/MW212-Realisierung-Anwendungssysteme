@@ -27,8 +27,5 @@ export default function StockElement({ stock }) {
         </Grid>
       </Paper>
     </Link>
-    //<Link href={"/stocks/" + stock.id} style={{ textDecoration: "none" }}>
-
-    //</Link>
   );
 }
