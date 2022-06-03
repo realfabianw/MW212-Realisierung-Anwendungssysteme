@@ -3,11 +3,46 @@ import Grid from "@mui/material/Grid";
 import Headline from "../components/headline/Headline";
 import StockService from "../services/StockService";
 import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
+  Typography,
+} from "@mui/material";
 import StockElement from "../components/stocks_overview/StockElement";
 
 export default function StocksPage() {
   const [stocks, setStocks] = useState(undefined);
+  const [open, setOpen] = useState(false);
+
+  const [stockName, setStockName] = useState("");
+  const [stockSymbol, setStockSymbol] = useState("");
+  const [stockISIN, setStockISIN] = useState("");
+  const [stockWKN, setStockWKN] = useState("");
+  const [reload, setReload] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
+
+  const handleSubmit = async () => {
+    console.log(stockName);
+    await StockService.getInstance().addStock(
+      stockName,
+      stockSymbol,
+      stockISIN,
+      stockWKN
+    );
+    setOpen(false);
+    setReload(true);
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -16,7 +51,8 @@ export default function StocksPage() {
     }
     fetchData();
     console.log(stocks);
-  }, []);
+    setReload(false);
+  }, [reload]);
 
   const handleClick = async () => {
     await StockService.getInstance().getAllStocks();
@@ -36,7 +72,7 @@ export default function StocksPage() {
         </Grid>
 
         <Grid container xs={6} sx={{ justifyContent: "flex-end", pr: "1rem" }}>
-          <Button onClick={handleClick} variant="outlined">
+          <Button onClick={handleClickOpen} variant="outlined">
             Add Stock
           </Button>
         </Grid>
@@ -48,6 +84,51 @@ export default function StocksPage() {
             </Grid>
           ))}
       </Grid>
+
+      <Dialog open={open}>
+        <DialogTitle>Add a Stock</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Please fill out all fields below.
+          </DialogContentText>
+          <TextField
+            fullWidth
+            margin="dense"
+            label="Name"
+            variant="standard"
+            value={stockName}
+            onChange={(e) => setStockName(e.target.value)}
+          />
+          <TextField
+            fullWidth
+            margin="dense"
+            label="Symbol"
+            variant="standard"
+            value={stockSymbol}
+            onChange={(e) => setStockSymbol(e.target.value)}
+          />
+          <TextField
+            fullWidth
+            margin="dense"
+            label="ISIN"
+            variant="standard"
+            value={stockISIN}
+            onChange={(e) => setStockISIN(e.target.value)}
+          />
+          <TextField
+            fullWidth
+            margin="dense"
+            label="WKN"
+            variant="standard"
+            value={stockWKN}
+            onChange={(e) => setStockWKN(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCancel}>Cancel</Button>
+          <Button onClick={handleSubmit}>Add Stock</Button>
+        </DialogActions>
+      </Dialog>
     </Grid>
   );
 }

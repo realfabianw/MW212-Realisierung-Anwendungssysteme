@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import React from "react";
 import {
   Area,
@@ -11,6 +11,26 @@ import {
 } from "recharts";
 
 export default function StockAreaChart({ data }) {
+  const formatXAxis = (tickItem) => {
+    return new Date(tickItem).toISOString().split("T")[0];
+  };
+
+  const formatYAxis = (data) => {
+    return "$" + data;
+  };
+
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active) {
+      return (
+        <Paper>
+          <Typography>{new Date(label).toISOString().split("T")[0]}</Typography>
+          <Typography variant="h6">{"$" + payload[0].value}</Typography>
+        </Paper>
+      );
+    }
+    return null;
+  };
+
   return (
     <Paper sx={{ py: "2rem" }}>
       <ResponsiveContainer width="100%" height={300}>
@@ -21,10 +41,10 @@ export default function StockAreaChart({ data }) {
               <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <XAxis dataKey="timestamp" />
-          <YAxis />
+          <XAxis dataKey="timestamp" tickFormatter={formatXAxis} />
+          <YAxis tickFormatter={formatYAxis} />
 
-          <Tooltip />
+          <Tooltip content={<CustomTooltip />} />
           <Area
             type="monotone"
             dataKey="close"

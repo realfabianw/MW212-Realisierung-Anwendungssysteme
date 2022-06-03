@@ -11,6 +11,32 @@ export default class StockService {
     return this.instance;
   }
 
+  async addStock(name, symbol, isin, wkn) {
+    let token = UserService.getInstance().getAuthorizationHeader();
+    console.log(
+      "Adding Stock to DB with Authorization Token: " + token.Authorization
+    );
+
+    let body = {
+      name: name,
+      symbol: symbol,
+      isin: isin,
+      wkn: wkn,
+    };
+    return await axios
+      .post("http://localhost:9090/stocks", body, {
+        headers: token,
+      })
+      .then((response) => {
+        console.log(response);
+        return true;
+      })
+      .catch((error) => {
+        console.log(error);
+        return false;
+      });
+  }
+
   async getAllStocks() {
     let token = UserService.getInstance().getAuthorizationHeader();
     console.log(
