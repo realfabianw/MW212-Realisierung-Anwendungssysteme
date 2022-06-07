@@ -10,7 +10,7 @@ tags:
       description: Find out more about our store
       url: http://swagger.io
 paths:
-  /user:
+  /register:
     post:
       tags:
         - user
@@ -26,6 +26,7 @@ paths:
       responses:
         default:
           description: successful operation
+  /user:
     get:
       tags:
         - user
@@ -38,7 +39,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
-  /user/login:
+  /login:
     get:
       tags:
         - user
